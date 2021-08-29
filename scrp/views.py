@@ -98,7 +98,7 @@ def home(request):
                         print(f"Empolyer Name is -->  {empolyer_name}\nEmployer Email is --> {email_id_empolyer}")
                     except Exception as e:
                         print(f"Error occured {e}")
-                    # ScrapData.objects.create(empolyername=empolyer_name, empolyeremail=email_id_empolyer, category=category, scrapped_url=job_url)
+                    ScrapData.objects.create(empolyername=empolyer_name, empolyeremail=email_id_empolyer, category=category, scrapped_url=job_url)
                     result_op.append([empolyer_name, email_id_empolyer])
                     print(counter)
                     counter += 1
