@@ -23,7 +23,7 @@ def home(request):
             total_record = eval(soup.find_all('span', attrs={"class": "found"})[0].text.replace(',', '')) // 25
             cookies = {
                 '_jbdisplaymode': '",VM_DISPLAYMESSAGECENTRE"',
-                'JSESSIONID': "D2753BB37A8C4CCC3CE28B6522857294.jobsearch75"
+                'JSESSIONID': "1F742FC352BECA94874EE081C7BBCE3A.jobsearch75"
             }
             cookies_sask = {
                 'JSESSIONID': "Un-JLs-8PevDOys70bJEgd0nwlpY9U2THdFXxRiCSp_enzew1WNn!575859616",
@@ -67,7 +67,9 @@ def home(request):
                             sask_result = requests.get(sask_url, cookies=cookies_sask).text
                             sask_html = BeautifulSoup(sask_result, "lxml")
                             emp_details = sask_html.find('div', attrs={'id': 'emp_details'})
+                            print(emp_details,"empdetails")
                             email_id_empolyer = emp_details.find_all('a')[-1].text
+                            empolyer_name = emp_details.find_all('p')[0].text
                             job_url = sask_url
                     try:
                         email_check = article_data_html.find('button', attrs={"id": "applynowbutton"}).text
@@ -96,7 +98,7 @@ def home(request):
                         print(f"Empolyer Name is -->  {empolyer_name}\nEmployer Email is --> {email_id_empolyer}")
                     except Exception as e:
                         print(f"Error occured {e}")
-                    ScrapData.objects.create(empolyername=empolyer_name, empolyeremail=email_id_empolyer, category=category, scrapped_url=job_url)
+                    # ScrapData.objects.create(empolyername=empolyer_name, empolyeremail=email_id_empolyer, category=category, scrapped_url=job_url)
                     result_op.append([empolyer_name, email_id_empolyer])
                     print(counter)
                     counter += 1
