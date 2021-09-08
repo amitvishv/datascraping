@@ -7,3 +7,7 @@ class ScrapData(models.Model):
     category = models.CharField(max_length=100)
     empolyername = models.CharField(max_length=100)
     empolyeremail = models.CharField(max_length=100)
+    html = models.TextField()
+
+    def __str__(self):
+        return self.empolyeremail
